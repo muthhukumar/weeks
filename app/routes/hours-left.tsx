@@ -1,11 +1,11 @@
-import { V2_MetaFunction, json } from "@remix-run/cloudflare";
+import { V2_MetaArgs, V2_MetaFunction, json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 
 import { hoursLeftThisYear } from "~/utils";
 
-export const meta: V2_MetaFunction = () => {
+export const meta: V2_MetaFunction = ({ data }: V2_MetaArgs) => {
   return [
-    { title: "Hours Left" },
+    { title: `${data.hoursLeft} hours left...` },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
