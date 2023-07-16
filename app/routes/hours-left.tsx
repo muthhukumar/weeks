@@ -19,7 +19,7 @@ export default function HoursLeft() {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="font-bold text-5xl">
-        {hoursLeft} <span className="text-sm">hours left</span>
+        {hoursLeft} <span className="text-sm">hours left...</span>
       </div>
     </div>
   );
