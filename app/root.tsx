@@ -37,7 +37,9 @@ export default function App() {
         <script
           dangerouslySetInnerHTML={{
             __html: `if (window.location.pathname === '/hours-left') {
+console.log("Timeout is started", new Date().toTimeString());
   setTimeout(() => {
+console.log("Page reloaded", new Date().toTimeString());
     location.reload();
   }, 60 * 60 * 1000); // 1 hour in milliseconds
 }`,
