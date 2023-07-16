@@ -4,6 +4,7 @@ import {
   type V2_MetaFunction,
 } from "@remix-run/cloudflare";
 import { Form } from "@remix-run/react";
+import { Button } from "~/components";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -44,11 +45,17 @@ export default function Index() {
             name="date-of-birth"
           />
           <div>
-            <button className="border rounded-md px-4 py-2 bg-black text-white border-black">
-              My Weeks
-            </button>
+            <Button>My Weeks</Button>
           </div>
         </Form>
+      </div>
+      <div className="gap-4 max-w-2xl mx-auto my-6 border-t">
+        <h2 className="font-bold text-xl mt-3">Links</h2>
+        <div className="gap-2 flex flex-col">
+          <a href="/hours-left" className="text-white underline">
+            Hours Left
+          </a>
+        </div>
       </div>
     </div>
   );

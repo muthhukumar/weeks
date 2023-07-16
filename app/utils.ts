@@ -39,9 +39,24 @@ function generateUniqueId(): string {
   return uniqueId;
 }
 
+function hoursLeftThisYear() {
+  const currentDate = new Date();
+
+  const currentYear = currentDate.getFullYear();
+
+  const nextYearDate = new Date(currentYear + 1, 0, 1);
+
+  const timeDiff = nextYearDate.getTime() - currentDate.getTime();
+
+  const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
+
+  return hoursLeft;
+}
+
 export {
   generateUniqueId,
   calculateWeeksBetweenDate,
   addDayToDate,
   splitArrayIntoChunks,
+  hoursLeftThisYear,
 };
