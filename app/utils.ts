@@ -1,7 +1,9 @@
+const ISTOffset = 5.5;
+
 function calculateWeeksBetweenDate(startDate: string, endDate: string): number {
   const start = new Date(startDate);
   const end = new Date(endDate);
-  const oneWeek = 7 * 24 * 60 * 60 * 1000;
+  const oneWeek = 7 * 24 * 60 * 60 * 1000 * ISTOffset;
 
   const timeDifference = Math.abs(end.getTime() - start.getTime());
   const weeks = Math.floor(timeDifference / oneWeek);
@@ -48,7 +50,7 @@ function hoursLeftThisYear() {
 
   const timeDiff = nextYearDate.getTime() - currentDate.getTime();
 
-  const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
+  const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60 * ISTOffset));
 
   return hoursLeft;
 }
@@ -64,7 +66,7 @@ function hoursLeftToday() {
 
   const timeDiff = tomorrow.getTime() - now.getTime();
 
-  const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
+  const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60 * ISTOffset));
 
   return hoursLeft;
 }
