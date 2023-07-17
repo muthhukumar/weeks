@@ -57,13 +57,10 @@ function hoursLeftThisYear() {
 }
 
 function hoursLeftToday() {
-  // Get the current time in the Indian time zone
   const now = moment.tz(moment(), "Asia/Kolkata");
 
-  // Get the start of the next day in the Indian time zone
   const tomorrow = moment.tz("Asia/Kolkata").add(1, "day").startOf("day");
 
-  // Calculate the time difference in hours
   const hoursLeft = tomorrow.diff(now, "hours");
 
   return hoursLeft;
