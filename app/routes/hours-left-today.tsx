@@ -1,7 +1,7 @@
 import { V2_MetaArgs, V2_MetaFunction, json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 
-import { hoursLeftThisYear } from "~/utils";
+import { hoursLeftToday } from "~/utils";
 
 export const meta: V2_MetaFunction = ({ data }: V2_MetaArgs) => {
   return [
@@ -11,7 +11,7 @@ export const meta: V2_MetaFunction = ({ data }: V2_MetaArgs) => {
 };
 
 export const loader = () => {
-  return json({ hoursLeft: hoursLeftThisYear() });
+  return json({ hoursLeft: hoursLeftToday() });
 };
 
 export default function HoursLeft() {
@@ -28,6 +28,7 @@ console.log("Page reloaded", new Date().toTimeString());
 `,
         }}
       ></script>
+
       <div className="font-bold text-5xl">
         {hoursLeft} <span className="text-sm">hours left...</span>
       </div>

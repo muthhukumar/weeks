@@ -53,10 +53,27 @@ function hoursLeftThisYear() {
   return hoursLeft;
 }
 
+function hoursLeftToday() {
+  const now = new Date();
+
+  const tomorrow = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + 1
+  );
+
+  const timeDiff = tomorrow.getTime() - now.getTime();
+
+  const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
+
+  return hoursLeft;
+}
+
 export {
   generateUniqueId,
   calculateWeeksBetweenDate,
   addDayToDate,
   splitArrayIntoChunks,
   hoursLeftThisYear,
+  hoursLeftToday,
 };

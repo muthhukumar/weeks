@@ -56,6 +56,12 @@ export default function Index() {
             Hours Left
           </a>
         </div>
+        <Divider />
+        <div className="flex flex-col">
+          <a href="/hours-left-today" className="text-xl font-bold">
+            Hours Left Today
+          </a>
+        </div>
       </div>
     </div>
   );

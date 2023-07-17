@@ -34,17 +34,6 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `if (window.location.pathname === '/hours-left') {
-console.log("Timeout is started", new Date().toTimeString());
-  setTimeout(() => {
-console.log("Page reloaded", new Date().toTimeString());
-    location.reload();
-  }, 60 * 60 * 1000); // 1 hour in milliseconds
-}`,
-          }}
-        ></script>
         <Meta />
         <Links />
       </head>
