@@ -1,22 +1,25 @@
+import moment from "moment-timezone";
+
 const ISTOffset = 5.5;
 
-function calculateWeeksBetweenDate(startDate: string, endDate: string): number {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const oneWeek = 7 * 24 * 60 * 60 * 1000 * ISTOffset;
+function calculateWeeksBetweenDate(startDate, endDate) {
+  const start = moment(startDate).tz("Asia/Kolkata");
+  const end = moment(endDate).tz("Asia/Kolkata");
 
-  const timeDifference = Math.abs(end.getTime() - start.getTime());
+  const oneWeek = moment.duration(1, "week").asMilliseconds();
+
+  const timeDifference = Math.abs(end - start);
   const weeks = Math.floor(timeDifference / oneWeek);
 
   return weeks;
 }
 
-function addDayToDate(date: string, yearToAdd: number = 85): Date {
-  const fromDate = new Date(date);
+function addDayToDate(date, yearToAdd = 85) {
+  const fromDate = moment(date).tz("Asia/Kolkata");
 
-  fromDate.setFullYear(fromDate.getFullYear() + yearToAdd);
+  const toDate = fromDate.clone().add(yearToAdd, "years");
 
-  return fromDate;
+  return toDate.toDate();
 }
 
 function splitArrayIntoChunks<T>(
@@ -42,31 +45,26 @@ function generateUniqueId(): string {
 }
 
 function hoursLeftThisYear() {
-  const currentDate = new Date();
+  const currentDate = moment();
 
-  const currentYear = currentDate.getFullYear();
+  const currentYear = currentDate.year();
 
-  const nextYearDate = new Date(currentYear + 1, 0, 1);
+  const nextYearDate = moment.tz([currentYear + 1, 0, 1], "Asia/Kolkata");
 
-  const timeDiff = nextYearDate.getTime() - currentDate.getTime();
+  const timeDiff = nextYearDate.diff(currentDate, "hours");
 
-  const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60 * ISTOffset));
-
-  return hoursLeft;
+  return timeDiff;
 }
 
 function hoursLeftToday() {
-  const now = new Date();
+  // Get the current time in the Indian time zone
+  const now = moment.tz(moment(), "Asia/Kolkata");
 
-  const tomorrow = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate() + 1
-  );
+  // Get the start of the next day in the Indian time zone
+  const tomorrow = moment.tz("Asia/Kolkata").add(1, "day").startOf("day");
 
-  const timeDiff = tomorrow.getTime() - now.getTime();
-
-  const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60 * ISTOffset));
+  // Calculate the time difference in hours
+  const hoursLeft = tomorrow.diff(now, "hours");
 
   return hoursLeft;
 }
